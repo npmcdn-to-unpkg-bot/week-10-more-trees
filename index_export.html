@@ -19,6 +19,7 @@
   font: 18px "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-anchor: middle;
   text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+/*    transform: rotate(-45deg);*/
 }
 
 .label,
@@ -35,10 +36,19 @@
 var margin = 20,
     diameter = 960;
 
+/*
 var color = d3.scale.linear()
     .domain([-1, 5])
     .range(["hsl(152,80%,80%)", "hsl(228,30%,40%)"])
-    .interpolate(d3.interpolateHcl);
+*/
+//    .interpolate(d3.interpolateHcl);
+    
+var color = d3.scale.category20c();
+    
+/*var color = d3.scale.ordinal()
+    .domain(["foo", "bar", "baz"])
+    .range(colorbrewer.RdBu[9]); */   
+    
 
 var pack = d3.layout.pack()
     .padding(1)
@@ -69,9 +79,11 @@ d3.json("exports.json", function(error, root) {
       .data(nodes)
     .enter().append("text")
       .attr("class", "label")
+//      .attr('transform', 'rotate(45deg)')
 //      .style("fill-opacity", function(d) { return d.parent === root ? 1 : 0; })
       .style("display", function(d) { return d.parent === root ? "inline" : "none"; })
-      .text(function(d) { return d.name; });
+      .text(function(d) { return d.name + ', ' + d.value; })
+  ;
 
   var node = svg.selectAll("circle,text");
 
