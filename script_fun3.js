@@ -46,14 +46,14 @@ var dir = 'imports.json';
 
     function Chart (dir) {
         
-//        var chart = this;     
+        var chart = this;     
         chart.direction = dir;
-        console.log('function start', chart.direction);
+//        console.log('function start', chart.direction);
 
 d3.json(chart.direction, function(error, root) {
   if (error) throw error;
 
-        console.log('open json', chart.direction);
+//        console.log('open json', chart.direction);
 /*            chart.direction = dir;*/
 
 
@@ -87,6 +87,34 @@ console.log('there', nodes);*/
 //       .text(function(d) { return d.name; });  
 
 
+      chart.node = d3.tip()
+      .attr('class', 'tooltip')
+//      .offset([0, 10])
+//      .direction('e')
+      .html(function(d) { return d['name'] ; });
+
+    chart.node(chart.svg);      
+
+    d3.selectAll('.node--leaf')
+      .on('mouseover', chart.node.show)
+      .on('mouseout', chart.node.hide);   
+    
+    
+    
+    
+    
+/*      .on('mouseover', function(d) {       
+    d3.select("#tooltip")
+      .select("#country")
+      .text(d['name']);        
+    
+    d3.select("#tooltip").classed("hidden", false);         //Show the tooltip
+    })
+        .on('mouseout', function() {                            //Hide the tooltip
+        d3.select("#tooltip").classed("hidden", true);
+    } ); */     
+    
+    
     
   var node = svg.selectAll("circle,text");
 
