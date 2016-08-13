@@ -48,6 +48,9 @@ var dir = 'imports.json';
         
         var chart = this;     
         chart.direction = dir;
+        
+      svg.selectAll("text").remove();
+        
 //        console.log('function start', chart.direction);
 
 d3.json(chart.direction, function(error, root) {
@@ -67,53 +70,58 @@ console.log('there', nodes);*/
       view;       
 
   var circle = svg.selectAll('#chart')
-//  varcircle = svg.selectAll('#chart')  
       .data(nodes)
     .enter().append("circle")
       .attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root"; })
       .style("fill", function(d) { return d.children ? color(d.depth) : null; })
       .on("click", function(d) { if (focus !== d) zoom(d), d3.event.stopPropagation(); })
 
-  svg.selectAll("text").remove();
+
 
   var text = svg.selectAll("text")
       .data(nodes)
     .enter().append("text")
       .attr("class", "label")
-      .attr('transform', 'rotate(45)')
       .style("fill-opacity", function(d) { return d.parent === root ? 1 : 0; })
-      .style("display", function(d) { return d.parent === root ? "inline" : "none"; })
-      .text(function(d) { return d.name + ', ' + d.value; });
-//       .text(function(d) { return d.name; });  
+      .style('display', 'inline')
+//      .style("display", function(d) { return d.parent === root ? "inline" : "none"; })
+//      .text(function(d) { return d.name + ', ' + d.value; });
+       .text(function(d) { return d.name; });  
 
-
-      chart.node = d3.tip()
-      .attr('class', 'tooltip')
-//      .offset([0, 10])
-//      .direction('e')
-      .html(function(d) { return d['name'] ; });
-
-    chart.node(chart.svg);      
-
-    d3.selectAll('.node--leaf')
-      .on('mouseover', chart.node.show)
-      .on('mouseout', chart.node.hide);   
+       
     
+    chart.tooltip = d3.select("body").append("div")   
+        .attr("class", "tooltip")               
+        .style("opacity", 0);    
     
-    
-    
-    
-/*      .on('mouseover', function(d) {       
-    d3.select("#tooltip")
-      .select("#country")
-      .text(d['name']);        
-    
-    d3.select("#tooltip").classed("hidden", false);         //Show the tooltip
+    d3.selectAll('.node')
+      .on('mouseover', function(d) {
+          chart.tooltip.transition()
+          .duration(50)
+          .style('opacity', 1)
+          .style("left", (d3.event.pageX + 30) + "px")     
+        .style("top", (d3.event.pageY - 30) + "px");
+        
+        chart.tooltip.append('p')
+            .attr('class', 'tooltip_text')
+//            .html(d['cname'] + ', ' + d['value']);
+        .html(function() {
+            if (d['cname']) {
+                return d['cname'] + ', ' + convert(d['value']);
+            } else {
+                return d['name'] + ', ' + convert(d['value']);
+            }
+            
+        })
+        
+//        console.log('in tool', d);
     })
-        .on('mouseout', function() {                            //Hide the tooltip
-        d3.select("#tooltip").classed("hidden", true);
-    } ); */     
-    
+        .on("mouseout", function(d) {       
+            chart.tooltip.html('')
+                .transition()        
+                .duration(50)      
+                .style("opacity", 0)
+        });    
     
     
   var node = svg.selectAll("circle,text");
@@ -160,7 +168,20 @@ d3.select(self.frameElement).style("height", diameter + "px");
     
 }     
         
-
+    function convert(num) {
+        if (num > 1000000) {
+            convert.output = num/1000000;
+            convert.output = convert.output.toFixed(1);
+            convert.output += ' trillion';        
+        } else if (num > 1000) {
+            convert.output = num/1000;      
+            convert.output = convert.output.toFixed(1);            
+            convert.output += ' billion';        
+        } else {
+            convert.output = num + ' million';
+        }       
+        return '$' + convert.output;
+    }
 
 
     Chart(dir);    

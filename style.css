@@ -57,19 +57,31 @@
         height: auto;
         padding: 10px;
         background-color: #F0F7C3;
+          background: orange;
         border-radius: 10px;
         box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-        pointer-events: visible;
+        pointer-events: none;
       }
 
     #tooltip.hidden {
             display: none;
     }
 
- .node--hover circle {
+div.tooltip {   
+    position: absolute;         
+    text-align: center; 
+    vertical-align: middle;        
+    padding: 5px;               
+    background: #fee5cd; 
+    border: 0px;        
+    border-radius: 6px;         
+    pointer-events: none;           
+}
+
+/* .node--hover circle {
   stroke: green;
   stroke-width: 1.2px;
-}
+}*/
 
 
 .node {
@@ -81,14 +93,17 @@
   stroke-width: 1.5px;
 }
 
-/*.node--leaf:hover {
+.node--leaf:hover {
   stroke: #000;
   stroke-width: 1.5px;
-}*/
+/*    pointer-events: visible;*/
+}
 
 .node--leaf {
   fill: white;
+/*    pointer-events: none;*/
 }
+
 
 .label {
   font: 18px "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -98,7 +113,7 @@
 }
 
 .label,
-.node--root,
-.node--leaf {
-  pointer-events: visible;
-}
+.node--root
+    {
+      pointer-events: none;
+    }

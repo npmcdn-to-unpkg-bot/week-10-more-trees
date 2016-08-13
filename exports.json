@@ -91,7 +91,7 @@
 
     },
     {
-     "name": "Insurance",
+     "name": "Insurance", "cname":"Insurance Services",        
      "children": 
 [{"name":"ARG","size":120},
 {"name":"AUS","size":1058},
@@ -256,7 +256,7 @@
    "name": "Goods",
    "children": [
     {
-     "name": "Food",
+     "name": "Food", "cname":"Foods, Feeds, and Beverages",        
      "children": [
         {"name":"ARG","size":81},
         {"name":"AUS","size":1561},
@@ -283,7 +283,7 @@
      ]
     },
     {
-     "name": "Industrial",
+     "name": "Industrial", "cname":"Industrial Supplies and Materials",        
      "children": [
         {"name":"ARG","size":4046},
         {"name":"AUS","size":3850},
@@ -310,7 +310,7 @@
      ]
     },
     {
-     "name": "Capital Goods",
+     "name": "Capital Goods", "cname":"Capital Goods except Automotive",        
      "children": [
         {"name":"ARG","size":3674},
         {"name":"AUS","size":10053},
@@ -337,7 +337,7 @@
         ]
     },
     {
-     "name": "Automotive",
+     "name": "Automotive", "cname":"Automotive Vehicles, Parts, and Engines",        
      "children": [   
         {"name":"ARG","size":268},
         {"name":"AUS","size":3140},
@@ -366,7 +366,7 @@
        
        
     {
-     "name": "Consumer",
+     "name": "Consumer", "cname":"Consumer Goods except Food and Automotive",        
      "children": [
         {"name":"ARG","size":978},
         {"name":"AUS","size":3763},
@@ -393,7 +393,7 @@
      ]
     },
     {
-     "name": "Other Merchandise",
+     "name": "Other Merchandise", "cname":"Other General Merchandise",
      "children": [
         {"name":"ARG","size":307},
         {"name":"AUS","size":2273},
