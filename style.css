@@ -32,9 +32,7 @@
         font-size: 18px;
         fill: #9C4206;
     }
-/*    .label {
-      font-weight: 700;
-    }*/
+
     .point {
       stroke-width: 1;
       opacity: .5;
@@ -75,13 +73,9 @@ div.tooltip {
     background: #fee5cd; 
     border: 0px;        
     border-radius: 6px;         
-    pointer-events: none;           
+    pointer-events: none;     
+    
 }
-
-/* .node--hover circle {
-  stroke: green;
-  stroke-width: 1.2px;
-}*/
 
 
 .node {
@@ -93,20 +87,20 @@ div.tooltip {
   stroke-width: 1.5px;
 }
 
-.node--leaf:hover {
+/*.node--leaf:hover {
   stroke: #000;
   stroke-width: 1.5px;
-/*    pointer-events: visible;*/
-}
+    pointer-events: visible;
+}*/
 
 .node--leaf {
-  fill: white;
+  fill: #eefdf2;
 /*    pointer-events: none;*/
 }
 
 
 .label {
-  font: 18px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 18px "Trebuchet MS", Helvetica, sans-serif;
   text-anchor: middle;
   text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
 /*    transform: rotate(90);*/
