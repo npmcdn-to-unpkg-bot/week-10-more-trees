@@ -87,11 +87,11 @@ div.tooltip {
   stroke-width: 1.5px;
 }
 
-/*.node--leaf:hover {
-  stroke: #000;
+.node--leaf:hover {
+  stroke: green;
   stroke-width: 1.5px;
-    pointer-events: visible;
-}*/
+/*    pointer-events: none;*/
+}
 
 .node--leaf {
   fill: #eefdf2;
